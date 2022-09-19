@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { gql, NetworkStatus, QueryHookOptions, useQuery } from '@apollo/client';
+import { gql, NetworkStatus, useQuery } from '@apollo/client';
 import { Movie } from '../types';
 import MovieRating from '../components/MovieRating';
 
@@ -24,7 +24,7 @@ const GET_MOVIES_BY_YEAR = gql`
 
 const QueryByYear = () => {
   let yearRef = useRef<HTMLInputElement>(null);
-  const [config, setConfig] = useState({ year: 0 });
+  const [config, setConfig] = useState<StateProps>({ year: 0 });
 
   const handleClick = (pollingRefetch?: Omit<StateProps, 'year'>) => {
     let nextConfig: StateProps = { year: 0 };
@@ -83,11 +83,12 @@ const MovieByYearResults = ({ year, doPolling, doRefetch }: StateProps) => {
 
   useEffect(() => {
     if (doPolling) {
-      startPolling(500);
+      startPolling(3000);
       // Stops polling when we exit this rendering of this component
       return stopPolling;
     } else if (doRefetch) {
       refetch({ year }); // Otherwise runs last fetch, which may not be what we want?
+      // refetch(); // Otherwise runs last fetch, which may not be what we want?
     }
   });
 
