@@ -14,7 +14,7 @@ const getAllStudents = gql`
   }
 `;
 
-const LabOne = () => {
+const LabTwo = () => {
   const { loading, error, data } = useQuery(getAllStudents);
 
   if (loading) return <p>Loading...</p>;
@@ -22,7 +22,7 @@ const LabOne = () => {
 
   return (
     <>
-      <h3>Lab One</h3>
+      <h3>Lab Two</h3>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -51,4 +51,4 @@ const LabOne = () => {
   );
 };
 
-export default LabOne;
+export default LabTwo;
