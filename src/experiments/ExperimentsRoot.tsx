@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
+import HelloCourse from './HelloCourse';
 
 const ExperimentsRoot = () => {
   return (
@@ -13,13 +14,14 @@ const ExperimentsRoot = () => {
         <div className="col-2">
           <ul className="list-unstyled">
             <li>
-              {/* <Link to="somewhere">Some text</Link> */}
-              Nothing here yet
+              <Link to="hello-course">Hello Course</Link>
             </li>
           </ul>
         </div>
         <div className="col">
-          <Routes>{/* <Route path="something" element={<Something />} /> */}</Routes>
+          <Routes>
+            <Route path="hello-course" element={<HelloCourse />} />
+          </Routes>
         </div>
       </div>
     </>
