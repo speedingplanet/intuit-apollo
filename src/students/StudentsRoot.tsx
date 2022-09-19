@@ -20,7 +20,7 @@ const StudentsRoot = () => {
         </div>
         <div className="col">
           <Routes>
-            <Route path="query-one" element={<LabOne />} />
+            <Route path="lab-one" element={<LabOne />} />
           </Routes>
         </div>
       </div>

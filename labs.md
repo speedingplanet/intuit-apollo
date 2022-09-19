@@ -1,6 +1,12 @@
 # Intermediate Apollo Labs
 
-## Lab 1: Get a List of students
+## Lab 1: Get and render a List of students
+
+1. Query for the students from the schema (`allStudents`)
+1. Fields: firstName, lastName, city, province, country
+1. What runs the query for us? `useQuery`
+1. Map over the results to generate either an unordered list or a table
+1. [Bootstrap Tables](https://getbootstrap.com/docs/5.2/content/tables/#overview)
 
 ## Lab 2: Sort the list
 
