@@ -14,7 +14,7 @@ const StudentsRoot = () => {
         <div className="col-2">
           <ul className="list-unstyled">
             <li>
-              <Link to="lab-one">First Lab: Query a student</Link>
+              <Link to="lab-one">First Lab: Query all students</Link>
             </li>
           </ul>
         </div>
