@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
+import AddMovie from './AddMovie';
 import LazyQueries from './LazyQueries';
 import QueryByYear from './QueryByYear';
 import QueryByYearCache from './QueryByYearCache';
@@ -27,6 +28,9 @@ const DemosRoot = () => (
           <li>
             <Link to="lazy-queries">Lazy Queries</Link>
           </li>
+          <li>
+            <Link to="add-movie">Add a movie</Link>
+          </li>
         </ul>
       </div>
       <div className="col">
@@ -35,6 +39,7 @@ const DemosRoot = () => (
           <Route path="query-by-year" element={<QueryByYear />} />
           <Route path="query-by-year-cache" element={<QueryByYearCache />} />
           <Route path="lazy-queries" element={<LazyQueries />} />
+          <Route path="add-movie" element={<AddMovie />} />
         </Routes>
       </div>
     </div>
