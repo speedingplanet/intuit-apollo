@@ -18,6 +18,17 @@ const typeDefs = gql`
     departmentName: String!
   }
 
+  type Address {
+    city: String
+    state: String
+  }
+
+  type Person {
+    firstName: String
+    lastName: String
+    address: Address
+  }
+
   type Query {
     rooms: [Room]
     roomById(id: ID!): Room
@@ -26,6 +37,7 @@ const typeDefs = gql`
 `;
 
 // Resolvers (provide data)
+// Resolvers have this signature (parent, args, context, info) => whatever
 const resolvers = {
   Query: {
     rooms: () => rooms, // lots of rooms, one would think
