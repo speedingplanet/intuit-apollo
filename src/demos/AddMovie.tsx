@@ -27,13 +27,6 @@ const AddMovie = () => {
   if (error) return <p>Something went wrong: {error.message}</p>;
 
   let movie = data?.createManyMovie[0] as Movie;
-  console.log('movie:', movie);
-  /*
-	if (data.createManyMovie.length === 1) {
-    let movie = data.createManyMovie[0] as Movie;
-    status = `${movie.title} added with id ${movie.id}`;
-  }
-	*/
 
   const handleAddMovie = (data: FormData) => {
     let movie: MovieInput = {};
@@ -52,7 +45,6 @@ const AddMovie = () => {
       }
     }
 
-    console.log('About to add movie:', movie);
     addMovie({ variables: { movie } });
   };
 
@@ -65,7 +57,7 @@ const AddMovie = () => {
       </div>
       <div className="row">
         <div className="col">
-          <p>Test</p>
+          <p>{movie ? `${movie.title} added with id ${movie.id}` : ''}</p>
         </div>
       </div>
     </>

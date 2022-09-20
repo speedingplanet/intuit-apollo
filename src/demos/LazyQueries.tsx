@@ -14,7 +14,8 @@ const LazyQueries = () => {
 
   const handleClick = () => {
     if (yearRef.current !== null) {
-      getMovies({ variables: { year: Number(yearRef.current.value) } });
+      let year = Number(yearRef.current.value);
+      year && getMovies({ variables: { year } });
     }
   };
 
