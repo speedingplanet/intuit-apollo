@@ -1,9 +1,27 @@
 import React from 'react';
 import BootstrapInput from '../components/BootstrapInput';
+import StudentsTable from './LabTwo';
 
 type Props = {};
 
-const AddStudent = (props: Props) => {
+const EditStudent = (props: Props) => {
+  const handleSelectRow = (id: number) => {
+    console.log(`You clicked student ${id}`);
+  };
+
+  return (
+    <section className="row">
+      <div className="col">
+        <StudentsTable selectRow={handleSelectRow} />
+      </div>
+      <div className="col">
+        <EditStudentForm />
+      </div>
+    </section>
+  );
+};
+
+const EditStudentForm = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -23,11 +41,11 @@ const AddStudent = (props: Props) => {
       <BootstrapInput id="postal-code" name="postalCode" label="Postal Code" type="text" />
       <div className="mt-2">
         <button className="btn btn-primary" type="submit">
-          Add Student
+          Edit Student
         </button>
       </div>
     </form>
   );
 };
 
-export default AddStudent;
+export default EditStudent;

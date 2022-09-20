@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-import AddStudent from './AddStudent';
+import EditStudent from './EditStudent';
 import LabOne from './LabOne';
 import LabTwo from './LabTwo';
 
@@ -22,7 +22,7 @@ const StudentsRoot = () => {
               <Link to="lab-two">Second Lab: Sort students</Link>
             </li>
             <li>
-              <Link to="add-student">Adding a student</Link>
+              <Link to="edit-student">Editing a student</Link>
             </li>
           </ul>
         </div>
@@ -30,7 +30,7 @@ const StudentsRoot = () => {
           <Routes>
             <Route path="lab-one" element={<LabOne />} />
             <Route path="lab-two" element={<LabTwo />} />
-            <Route path="add-student" element={<AddStudent />} />
+            <Route path="edit-student" element={<EditStudent />} />
           </Routes>
         </div>
       </div>
