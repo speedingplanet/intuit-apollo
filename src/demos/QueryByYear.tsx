@@ -40,15 +40,26 @@ const QueryByYear = () => {
   );
 };
 
+interface QueryByYearData {
+  allMovies: Movie[];
+}
+
+interface QueryByYearVariables {
+  year: number;
+}
+
 const MovieByYearResults = ({ year }: { year: number }) => {
-  const { loading, error, data } = useQuery(GET_MOVIES_BY_YEAR, { variables: { year } });
+  const { loading, error, data } = useQuery<QueryByYearData, QueryByYearVariables>(
+    GET_MOVIES_BY_YEAR,
+    { variables: { year } }
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
 
   return (
     <ul>
-      {data.allMovies.map((movie: Movie) => (
+      {data?.allMovies.map((movie: Movie) => (
         <li key={movie.id}>
           {movie.title} ({movie.year}) <MovieRating rating={movie.rating} />
         </li>

@@ -10,6 +10,11 @@
 
 ## Lab 2: Sort the list
 
+1. Add event handlers for sorting (table headers, maybe buttons if you used an unordered list)
+1. Write a graphql statement for sorting
+1. Add a parameter to change the sortField (later the sort direction)
+1. Run the sort when the user clicks on the column headers (or similar)
+
 ## Lab 3: Filter the list
 
 ## Lab 4: Get a student by their ID

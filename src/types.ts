@@ -1,26 +1,6 @@
-/**
- * Base props for React components
- * @see {@link https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example}
- */
-export declare interface AppProps {
-  children?: React.ReactNode;
-  // childrenElement: JSX.Element;
-  style?: React.CSSProperties;
-}
-
-export interface Movie {
-  id: number;
-  title: string;
-  year: number;
-  director: string;
-  writer: string[];
-  rating: number;
-  genres: string[];
-}
-
 export type Semester = 'Fall' | 'Winter' | 'Spring' | 'Summer';
 
-export interface Movies {
+export interface Movie {
   id: number;
   title: string;
   year: number;
@@ -30,12 +10,8 @@ export interface Movies {
   genres: string | string[];
 }
 
-export interface Class {
-  seats: number;
-  semester: Semester;
-  courseId: number;
-  instructorId: number;
-  roomId: number;
+export interface Department {
+  departmentName: string;
   id: number;
 }
 
@@ -45,11 +21,7 @@ export interface Course {
   credits: number;
   duration: number;
   departmentId: number;
-  id: number;
-}
-
-export interface Department {
-  departmentName: string;
+  department?: Department;
   id: number;
 }
 
@@ -60,18 +32,11 @@ export interface Instructor {
   email: string;
   phoneNumber: string;
   city: string;
-  province: string;
+  province: string | null;
   country: string;
   postalCode: string;
   departmentId: number;
-  id: number;
-}
-
-export interface Registration {
-  registrationDate: string;
-  registrationStatus: string;
-  studentId: number;
-  classId: number;
+  department?: Department;
   id: number;
 }
 
@@ -81,6 +46,18 @@ export interface Room {
   id: number;
 }
 
+export interface Class {
+  seats: number;
+  semester: Semester;
+  courseId: number;
+  instructorId: number;
+  roomId: number;
+  id: number;
+  course?: Course;
+  instructor?: Instructor;
+  room?: Room;
+}
+
 export interface Student {
   firstName: string;
   lastName: string;
@@ -88,9 +65,20 @@ export interface Student {
   email: string;
   phoneNumber: string;
   city: string;
-  province: string;
+  province: string | null;
   country: string;
   postalCode: string;
-  departmentId: number;
+  departmentId?: number;
+  department?: Department;
+  id: number;
+}
+
+export interface Registration {
+  registrationDate: string;
+  registrationStatus: string;
+  studentId: number;
+  classId: number;
+  student?: Student;
+  class?: Class;
   id: number;
 }

@@ -19,6 +19,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
+  ignorePatterns: ['server/**'],
   rules: {
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': [
