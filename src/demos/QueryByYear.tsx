@@ -42,6 +42,7 @@ const QueryByYear = () => {
 
 interface QueryByYearData {
   allMovies: Movie[];
+  // allMovies: Pick<Movie, 'title' | 'year' | 'rating' | 'id'>[];
 }
 
 interface QueryByYearVariables {
@@ -53,6 +54,7 @@ const MovieByYearResults = ({ year }: { year: number }) => {
     GET_MOVIES_BY_YEAR,
     { variables: { year } }
   );
+  // const { loading, error, data } = useQuery(GET_MOVIES_BY_YEAR, { variables: { year } });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
