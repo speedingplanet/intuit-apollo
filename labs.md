@@ -15,6 +15,13 @@
 1. Add a parameter to change the sortField (later the sort direction)
 1. Run the sort when the user clicks on the column headers (or similar)
 
+## Server Lab 1: Implement students
+
+1. Load the students from 'all-data.cjs'
+2. Implement a Student type
+3. Implement queries for `students` and `studentById`
+4. Implement resolvers for `students` and `studentById`
+
 ## Lab 3: Filter the list
 
 ## Lab 4: Get a student by their ID
@@ -30,7 +37,7 @@
 ## Lab 9: Edit a student
 
 1. Look up the student to be edited by their studentId
-1. Populate the editing form with the details for the student 
+1. Populate the editing form with the details for the student
 1. Edit the student
 1. Run a mutation to update the student when the form is submitted
 1. Display a message about a successful (or failed!) update when complete

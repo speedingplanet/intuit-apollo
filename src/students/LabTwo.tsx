@@ -2,9 +2,22 @@ import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Student } from '../types';
 
+const getAllStudentsSorted = gql`
+  query GetAllStudentsSorted($sortField: String, $sortOrder: String) {
+    students(sortField: $sortField, sortOrder: $sortOrder) {
+      firstName
+      lastName
+      city
+      province
+      country
+      id
+    }
+  }
+`;
+
 const getAllStudents = gql`
-  query GetAllStudents($sortField: String, $sortOrder: String) {
-    allStudents(sortField: $sortField, sortOrder: $sortOrder) {
+  query GetAllStudents {
+    students {
       firstName
       lastName
       city
@@ -58,7 +71,7 @@ const DisplaySortedStudentsList = ({ sortField, sortDirection, selectRow }: Stud
 
   return (
     <tbody>
-      {data.allStudents.map((student: Student) => {
+      {data.students.map((student: Student) => {
         return (
           <tr
             key={student.id}

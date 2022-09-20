@@ -1,58 +1,166 @@
-// Server implementation here
 const { ApolloServer, gql } = require('apollo-server');
 const { ApolloServerPluginLandingPageLocalDefault } = require('apollo-server-core');
-const { rooms, departments } = require('../data/all-data.cjs');
 
-// We need data, graphql type definitions, resolvers for our data
+const {
+  classes,
+  courses,
+  departments,
+  instructors,
+  movies,
+  registrations,
+  rooms,
+  students,
+} = require('../data/all-data.cjs');
 
-// GraphQL types
 const typeDefs = gql`
-  type Room {
+  enum Semester {
+    Fall
+    Winter
+    Spring
+    Summerconst
+  }
+
+  type Movie {
     id: ID!
-    building: String!
-    roomCapacity: Int
+    title: String!
+    year: Int!
+    director: [String!]!
+    writer: [String!]!
+    rating: Int!
+    genres: [String!]!
+  }
+
+  input MovieInput {
+    title: String!
+    year: Int!
+    director: [String!]!
+    writer: [String!]!
+    rating: Int!
+    genres: [String!]!
   }
 
   type Department {
-    id: ID!
     departmentName: String!
+    id: ID!
   }
 
-  type Address {
-    city: String
-    state: String
+  type Course {
+    courseTitle: String!
+    courseDescription: String!
+    credits: Int!
+    duration: Int!
+    departmentId: ID
+    department: Department
+    id: ID!
   }
 
-  type Person {
-    firstName: String
-    lastName: String
-    address: Address
+  type Instructor {
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String!
+    email: String!
+    phoneInt: String!
+    city: String!
+    province: String
+    country: String!
+    postalCode: String!
+    departmentId: ID!
+    department: Department
+    id: ID!
+  }
+
+  type Room {
+    roomCapacity: Int!
+    building: String!
+    id: ID!
+  }
+
+  type Class {
+    seats: Int!
+    semester: Semester!
+    courseId: ID!
+    instructorId: ID!
+    roomId: ID!
+    id: ID!
+    course: Course
+    instructor: Instructor
+    room: Room
+  }
+
+  type Student {
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String!
+    email: String!
+    phoneInt: String!
+    city: String!
+    province: String
+    country: String!
+    postalCode: String!
+    departmentId: Int!
+    department: Department
+    id: ID!
+  }
+
+  type Registration {
+    registrationDate: String!
+    registrationStatus: String!
+    studentId: ID!
+    classId: ID!
+    student: Student
+    class: Class
+    id: ID!
   }
 
   type Query {
-    rooms: [Room]
-    roomById(id: ID!): Room
+    movies: [Movie]
     departments: [Department]
+    courses: [Course]
+    instructors: [Instructor]
+    rooms: [Room]
+    classes: [Class]
+    students: [Student]
+    registrations: [Registration]
+  }
+
+  type Mutation {
+    # Using individual arguments
+    addRoom(roomCapacity: Int, building: String): Room
+
+    # Using an Input type
+    addMovie(movie: MovieInput): Movie
   }
 `;
 
-// Resolvers (provide data)
-// Resolvers have this signature (parent, args, context, info) => whatever
+// Resolver signature:
+// (parent, args, context, info)
+// parent -> return value of the parent in the resolver chain
+// args -> Arguments provided to this query
+// context -> shared context across an operation
+// info -> Contains information about the operation's execution state, including the field name, the path to the field from the root, and more. 🤷‍♂️
+/**
+ * @see {@link https://www.apollographql.com/docs/apollo-server/data/resolvers#resolver-arguments}
+ */
 const resolvers = {
   Query: {
-    rooms: () => rooms, // lots of rooms, one would think
-    roomById: (parent, { id }) => rooms.find((room) => room.id === Number(id)),
+    movies: () => movies,
     departments: () => departments,
+    courses: () => courses,
+    instructors: () => instructors,
+    rooms: () => rooms,
+    classes: () => classes,
+    students: () => students,
+    registrations: () => registrations,
   },
 };
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  cache: 'bounded', // Limited cache, about 30 MB, can configure for me
-  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })], // Apollo's version of GraphiQL
+  cache: 'bounded',
+  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
 });
 
 server.listen().then(({ url }) => {
-  console.log(`Apollo server running at ${url}`);
+  console.log(`Apollo server is go at ${url}`);
 });

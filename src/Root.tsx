@@ -5,13 +5,18 @@ import React from 'react';
 
 type Props = {};
 
-const client = new ApolloClient({
+const jsonGraphqlClient = new ApolloClient({
   uri: 'http://localhost:8000/',
   cache: new InMemoryCache(),
 });
 
+const apolloServerClient = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+
 const Root = (props: Props) => (
-  <ApolloProvider client={client}>
+  <ApolloProvider client={apolloServerClient}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
