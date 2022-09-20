@@ -5,16 +5,17 @@ type Props = {
   name: string;
   type: string;
   label: string;
-  [key: string]: string;
+  initialValue?: string;
+  [key: string]: string | undefined;
 };
 
-const BootstrapInput = ({ id, name, label, type, ...props }: Props) => {
+const BootstrapInput = ({ id, name, label, type, initialValue, ...props }: Props) => {
   return (
     <div {...props}>
       <label htmlFor={id} className="form-label">
         {label}
       </label>
-      <input type={type} className="form-control" id={id} name={name} />
+      <input type={type} className="form-control" id={id} name={name} value={initialValue} />
     </div>
   );
 };

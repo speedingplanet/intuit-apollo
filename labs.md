@@ -29,6 +29,12 @@
 
 ## Lab 9: Edit a student
 
+1. Look up the student to be edited by their studentId
+1. Populate the editing form with the details for the student 
+1. Edit the student
+1. Run a mutation to update the student when the form is submitted
+1. Display a message about a successful (or failed!) update when complete
+
 ## Lab 10: Other Mutations?
 
 ## Lab 11: Paginate through a set of students
